@@ -1,0 +1,16 @@
+
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+<p>Welcome, {{ user.first_name|default:user.username }}!</p>
+
+<h3>Administrator Panel</h3>
+<p>You are logged in as an administrator.</p>
+
+<ul>
+    <li>Manage user accounts</li>
+    <li>Manage dream interpretation references</li>
+    <li>Oversee the Ano Kaya 'To? system</li>
+</ul>
+{% endblock %}

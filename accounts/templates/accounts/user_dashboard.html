@@ -1,0 +1,17 @@
+
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<h2>Welcome to Ano Kaya 'To?</h2>
+<p>Hello, {{ user.first_name|default:user.username }}!</p>
+
+<h3>Your Dream Journal</h3>
+<p>Welcome to your personal space for recording and exploring your dreams.</p>
+
+<ul>
+    <li>Record your dreams</li>
+    <li>Explore dream interpretations</li>
+    <li>Browse your dream history</li>
+    <li>Track recurring dream patterns</li>
+</ul>
+{% endblock %}
