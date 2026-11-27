@@ -1,0 +1,38 @@
+
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<h2>{{ page_title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div style="margin-bottom: 20px;">
+            <label>
+                <strong>{{ field.label }}</strong>
+            </label>
+
+            {{ field }}
+
+            {% if field.help_text %}
+                <small>{{ field.help_text }}</small>
+            {% endif %}
+
+            {% for error in field.errors %}
+                <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <button type="submit">Save Dream</button>
+    <a href="{% url 'dream_list' %}">Cancel</a>
+</form>
+
+{% endblock %}
