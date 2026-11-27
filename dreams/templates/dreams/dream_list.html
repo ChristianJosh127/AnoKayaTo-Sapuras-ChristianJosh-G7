@@ -1,0 +1,39 @@
+
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<h2>My Dream Journal</h2>
+<p>Record and manage your dreams in one place.</p>
+
+<a href="{% url 'dream_create' %}">
+    <button type="button">+ Record a Dream</button>
+</a>
+
+<hr>
+
+{% if dreams %}
+    {% for dream in dreams %}
+        <div style="padding: 15px 0; border-bottom: 1px solid #ddd;">
+            <h3>{{ dream.title|default:"Untitled Dream" }}</h3>
+            <p><strong>Date:</strong> {{ dream.dream_date }}</p>
+            <p>{{ dream.dream_text|truncatewords:30 }}</p>
+
+            <p><strong>Symbols:</strong>
+                {% for symbol in dream.symbols.all %}
+                    {{ symbol.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    No symbols tagged
+                {% endfor %}
+            </p>
+
+            <a href="{% url 'dream_update' dream.pk %}">Edit</a>
+            |
+            <a href="{% url 'dream_delete' dream.pk %}">Delete</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>You haven't recorded any dreams yet.</p>
+    <p>Start by adding your first dream entry.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<h2>Delete Dream Entry</h2>
+
+<p>Are you sure you want to delete this dream?</p>
+
+<h3>{{ dream.title|default:"Untitled Dream" }}</h3>
+<p>{{ dream.dream_text|truncatewords:30 }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'dream_list' %}">Cancel</a>
+</form>
+
+{% endblock %}
